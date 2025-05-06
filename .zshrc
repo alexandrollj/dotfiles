@@ -59,6 +59,11 @@ alias vim="nvim"
 # Python
 alias py="python3"
 
+# Dotnet
+alias dr="dotnet run"
+alias db="dotnet build"
+alias dt="dotnet test"
+
 # Clear terminal
 alias c="clear"
 
@@ -71,3 +76,4 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # Created by `pipx` on 2025-04-29 19:28:41
 export PATH="$PATH:/home/alex/.local/bin"
+export PATH="$HOME/.dotnet/tools:$PATH"
