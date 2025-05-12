@@ -7,25 +7,30 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
+
     local lspconfig = require("lspconfig")
     local mason_lspconfig = require("mason-lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     local keymap = vim.keymap
 
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
+
         local opts = { buffer = ev.buf, silent = true }
 
         opts.desc = "Show LSP references"
         keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+
 
         opts.desc = "Go to declaration"
         keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
         opts.desc = "Show LSP definitions"
         keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+
 
         opts.desc = "Show LSP implementations"
         keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
@@ -51,6 +56,7 @@ return {
         opts.desc = "Go to next diagnostic"
         keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
+
         opts.desc = "Show documentation for what is under cursor"
         keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
@@ -58,6 +64,7 @@ return {
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
       end,
     })
+
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -72,9 +79,11 @@ return {
         "omnisharp",
         "lua_ls",
         "graphql",
+
         "emmet_ls",
       },
     })
+
 
     local custom_handlers = {
       graphql = function()
@@ -96,7 +105,9 @@ return {
             "scss",
             "less",
             "svelte",
+
           },
+
         })
       end,
 
@@ -106,6 +117,7 @@ return {
           settings = {
             Lua = {
               diagnostics = {
+
                 globals = { "vim" },
               },
               completion = {
@@ -115,6 +127,7 @@ return {
           },
         })
       end,
+
 
       omnisharp = function()
         lspconfig.omnisharp.setup({
@@ -126,8 +139,10 @@ return {
             tostring(vim.fn.getpid()),
           },
           enable_editorconfig_support = true,
+
           enable_roslyn_analyzers = true,
           organize_imports_on_format = true,
+
           enable_import_completion = true,
         })
       end,
@@ -141,6 +156,7 @@ return {
           capabilities = capabilities,
         })
       end
+
     end
   end,
 }
